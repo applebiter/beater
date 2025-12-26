@@ -6,11 +6,7 @@ A JACK-aware drum machine with timeline-based pattern arrangement for Linux.
 ![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
 ![License](https://img.shields.io/badge/license-MIT-green)
 
-## Status: Phase 6 Complete ✓
-
-**Interactive UI with Project Persistence** - Fully functional drum machine!
-
-### Current Features
+## Features
 - 🎵 **JACK Audio Integration** - Real-time low-latency drum playback
 - 🎨 **Interactive Timeline Editor** - Drag, drop, resize regions with snap-to-grid
 - 📊 **Pattern Library** - Groove, fill, and half-time patterns
@@ -23,9 +19,6 @@ A JACK-aware drum machine with timeline-based pattern arrangement for Linux.
 - 🌍 **Cross-Platform Sample Detection** - Automatically finds samples in common locations
 - 🎨 **Dark Theme UI** - Professional modern interface
 - 📍 **Playhead Control** - Click to position, drag to scrub
-
-### Next Phase
-- Pattern editor UI with step sequencer view
 
 ## Installation
 
@@ -201,7 +194,6 @@ Free to use, modify, and distribute.
 - **GitHub**: https://github.com/applebiter/beater
 - **Issues**: https://github.com/applebiter/beater/issues
 - **Releases**: https://github.com/applebiter/beater/releases
-- **Project Plan**: [PROJECT_PLAN.md](PROJECT_PLAN.md)
 
 ---
 
