@@ -86,7 +86,7 @@ int TimelineCanvas::tickToPixel(Tick tick) const {
     return static_cast<int>((tick * pixelsPerBeat_) / PPQ);
 }
 
-void TimelineCanvas::paintEvent(QPaintEvent* event) {
+void TimelineCanvas::paintEvent(QPaintEvent*) {
     QPainter painter(this);
     painter.setRenderHint(QPainter::Antialiasing);
     
@@ -121,7 +121,6 @@ void TimelineCanvas::drawRuler(QPainter& painter, int width) {
     painter.setPen(QColor(0x60, 0x60, 0x60));
     
     // Calculate visible range
-    Tick startTick = 0;
     Tick endTick = pixelToTick(width);
     
     // Draw bars from start to end
@@ -165,7 +164,7 @@ void TimelineCanvas::drawRuler(QPainter& painter, int width) {
     painter.drawLine(0, RULER_HEIGHT, width, RULER_HEIGHT);
 }
 
-void TimelineCanvas::drawTracks(QPainter& painter, int width, int height) {
+void TimelineCanvas::drawTracks(QPainter& painter, int width, int) {
     int y = RULER_HEIGHT + TRACK_SPACING;
     
     for (size_t i = 0; i < project_->getTrackCount(); ++i) {
@@ -1003,6 +1002,9 @@ TimelineWidget::TimelineWidget(QWidget* parent) : QWidget(parent) {
     scrollArea_->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOn);
     scrollArea_->setVerticalScrollBarPolicy(Qt::ScrollBarAsNeeded);
     
+    // Install event filter to intercept wheel events for zooming
+    scrollArea_->viewport()->installEventFilter(this);
+    
     mainLayout->addWidget(scrollArea_, 1);
 }
 
@@ -1044,6 +1046,54 @@ void TimelineWidget::resetZoom() {
     canvas_->setMinimumSize(canvas_->sizeHint());
     canvas_->updateGeometry();
     canvas_->update();
+}
+
+bool TimelineWidget::eventFilter(QObject* obj, QEvent* event) {
+    // Intercept wheel events on the scroll area viewport
+    if (event->type() == QEvent::Wheel && obj == scrollArea_->viewport()) {
+        QWheelEvent* wheelEvent = static_cast<QWheelEvent*>(event);
+        // Handle zoom with or without Ctrl modifier
+        double zoomFactor = (wheelEvent->angleDelta().y() > 0) ? 1.15 : (1.0 / 1.15);
+        double currentZoom = canvas_->getPixelsPerBeat();
+        double newZoom = currentZoom * zoomFactor;
+        
+        // Clamp zoom level
+        newZoom = std::max(10.0, std::min(200.0, newZoom));
+        
+        if (newZoom != currentZoom) {
+            canvas_->setPixelsPerBeat(newZoom);
+            canvas_->setMinimumSize(canvas_->sizeHint());
+            canvas_->updateGeometry();
+            canvas_->update();
+        }
+        
+        return true; // Event handled, don't pass to scroll area
+    }
+    return QWidget::eventFilter(obj, event);
+}
+
+void TimelineWidget::wheelEvent(QWheelEvent* event) {
+    // Handle Ctrl+Wheel for zooming
+    if (event->modifiers() & Qt::ControlModifier) {
+        double zoomFactor = (event->angleDelta().y() > 0) ? 1.15 : (1.0 / 1.15);
+        double currentZoom = canvas_->getPixelsPerBeat();
+        double newZoom = currentZoom * zoomFactor;
+        
+        // Clamp zoom level
+        newZoom = std::max(10.0, std::min(200.0, newZoom));
+        
+        if (newZoom != currentZoom) {
+            canvas_->setPixelsPerBeat(newZoom);
+            canvas_->setMinimumSize(canvas_->sizeHint());
+            canvas_->updateGeometry();
+            canvas_->update();
+        }
+        
+        event->accept();
+    } else {
+        // Allow default scroll behavior
+        QWidget::wheelEvent(event);
+    }
 }
 
 } // namespace beater
