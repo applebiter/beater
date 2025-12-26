@@ -1,0 +1,26 @@
+<!-- SVG Icon for Beater Drum Machine -->
+<svg width="128" height="128" viewBox="0 0 128 128" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background circle -->
+  <circle cx="64" cy="64" r="60" fill="#1e1e1e" stroke="#00aaff" stroke-width="4"/>
+  
+  <!-- Drum representation -->
+  <ellipse cx="64" cy="55" rx="35" ry="12" fill="#3a3a3a" stroke="#00aaff" stroke-width="2"/>
+  <rect x="29" y="55" width="70" height="30" fill="#2a2a2a"/>
+  <rect x="29" y="55" width="70" height="30" fill="url(#drumGradient)"/>
+  <ellipse cx="64" cy="85" rx="35" ry="12" fill="#1a1a1a" stroke="#00aaff" stroke-width="2"/>
+  
+  <!-- Drumsticks -->
+  <line x1="45" y1="30" x2="55" y2="45" stroke="#ff8800" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="43" cy="27" r="3" fill="#ff8800"/>
+  
+  <line x1="83" y1="30" x2="73" y2="45" stroke="#ff8800" stroke-width="3" stroke-linecap="round"/>
+  <circle cx="85" cy="27" r="3" fill="#ff8800"/>
+  
+  <!-- Gradient definition -->
+  <defs>
+    <linearGradient id="drumGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#3a3a3a;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#1a1a1a;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+</svg>

@@ -1,0 +1,44 @@
+# Build directories
+build/
+build-*/
+cmake-build-*/
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Compiled files
+*.o
+*.so
+*.a
+*.dylib
+*.exe
+
+# Qt
+*.qm
+*.pro.user
+*.autosave
+moc_*.cpp
+ui_*.h
+qrc_*.cpp
+
+# CMake
+CMakeCache.txt
+CMakeFiles/
+cmake_install.cmake
+Makefile
+
+# Test outputs
+Testing/
+CTestTestfile.cmake
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Project files (local settings)
+*.user
+*.suo

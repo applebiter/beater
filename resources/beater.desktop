@@ -1,0 +1,11 @@
+[Desktop Entry]
+Version=1.0
+Type=Application
+Name=Beater Drum Machine
+GenericName=Drum Machine
+Comment=JACK-based drum machine with timeline arranger
+Exec=beater
+Icon=beater
+Terminal=false
+Categories=AudioVideo;Audio;Sequencer;Midi;
+Keywords=drum;sequencer;music;audio;jack;
