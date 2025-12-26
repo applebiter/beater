@@ -4,7 +4,7 @@ A JACK-aware drum machine with timeline-based pattern arrangement for Linux.
 
 ![Version](https://img.shields.io/badge/version-0.1.0-blue)
 ![Platform](https://img.shields.io/badge/platform-Linux-lightgrey)
-![License](https://img.shields.io/badge/license-TBD-orange)
+![License](https://img.shields.io/badge/license-MIT-green)
 
 ## Status: Phase 6 Complete ✓
 
@@ -186,7 +186,9 @@ Contributions welcome! Areas for improvement:
 
 ## License
 
-To be determined.
+MIT License - see [LICENSE](LICENSE) file for details.
+
+Free to use, modify, and distribute.
 
 ## Credits
 
